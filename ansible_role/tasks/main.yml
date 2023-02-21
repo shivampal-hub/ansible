@@ -1,0 +1,30 @@
+# tasks file for jenkins_role
+    - name: ensure jenkins apt key is installed
+      apt_key: 
+        url: "{{ jenkins.repo_URL }}" 
+        state: present
+      
+
+    - name: trepository configured
+      apt_repository: 
+        repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+        state: present
+  
+
+    - name: Install Java
+      apt:
+        name: "{{ java }}"
+        state: present  
+
+    - name: ensure jenkins is installed
+      apt:
+        name: jenkins 
+        update_cache: yes
+  
+
+    - name: enable jenkins
+      service:
+        name: jenkins
+        enabled: true 
+        state: started
+
