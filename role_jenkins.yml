@@ -1,0 +1,5 @@
+- name: jenkins
+  hosts: ubuntu1
+  become: yes
+  roles:
+    - ansible_role
